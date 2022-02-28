@@ -1,8 +1,15 @@
+#include <optional>
+#include <tuple>
+
+using namespace std;
+
+template<typename F> struct FunctionTraits;
+
 // Useful function traits.
 template<typename R, typename... Args>
 struct FunctionTraits<R(*)(Args...)> {
   using RetType = R;
-  using ParameterTraits = ParameterTraits<0, 0, 0, true, Args...>;
+  using Params = tuple<Args...>;
 };
 
 // Determines if a type is std::optional<T> for some T
